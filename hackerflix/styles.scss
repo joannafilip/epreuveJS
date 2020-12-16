@@ -1,0 +1,99 @@
+/* dependencies */
+@import "@fortawesome/fontawesome-free/css/all.css";
+// @import "~bootstrap/scss/bootstrap";
+
+/* local imports */
+@import "./styles/variables";
+@import "./styles/fonts";
+// @import "./styles/base";
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100%;
+  width : 100%;
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+
+}
+#app{
+    height: 200%;
+    width : 100%;
+}
+h1 {
+    text-align: center;
+}
+#recent{
+    margin-bottom: 2%;
+    margin-left: 20px; ;
+}
+.box-films{
+    height: 100%;
+    width: 100%;
+    display : flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+   
+.films { 
+    margin: 1%;
+    border: 3px rgb(241, 235, 235) solid;
+    height: 245px;
+    width: 150px;
+    border-radius: 10%;
+}
+
+h5{
+   font-size: 15px;
+    text-align: center;
+
+}
+.img{
+    height: 150px;
+    width: 100px;
+    margin-left: 15%;
+    margin-top :5%;
+}
+.posters {
+    height: 150px;
+    width: 100px;
+    background-color:rgb(205, 50, 197);
+    margin-left: 15%;
+    margin-top :5%;
+}
+
+
+.popup{
+    position: fixed;
+    top :20%;
+    left :37%;
+    background-color: rgba(241, 233, 233, 0.9);
+    width: 500px;
+    height: 550px;
+    transition: 200ms ease-in-out;
+    display : none;
+    padding: 1%;
+    font-size: 100%;
+    border-radius: 10%;
+    button{
+            background-color: rgb(5, 4, 4);
+            border-radius: 10%;
+            margin: 3%;
+            margin-left: 46%;
+            color: white;
+            
+            
+        }
+        .pop-titre, .pop-titre, .pop-year, .pop-year, .pop-year {
+            color: blac;
+            text-align: left;
+            font-weight: 200;
+        }
+
+
+
+}
+
