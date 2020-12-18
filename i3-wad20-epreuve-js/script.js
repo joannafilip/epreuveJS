@@ -22,13 +22,13 @@ function render() {
                     <h6>Lieu de production : ${vaccins[i].lieux_de_production}</h6>
                     <h6>Technologie :${vaccins[i].technologie}</h6>
                     <h6>Quantité : ${vaccins[i].quantité}</h6>
-                    <h6>Prix : ${vaccins[i].prix_unitaire}</h6>
+                    <h6>Prix : ${vaccins[i].prix_unitaire}$</h6>
                     <h6>Approuvé : ${vaccins[i].approuvé}</h6>
                     <input type="number"name="Quantité"id="${[i]}" class="quantité"placeholder="Quantité à comander">
                     <button id="réserver">Réserver</button>
                 </div>
                 </div>
-        `;
+             `;
   }
   const footer = `
         <footer id="footer" class="card-footer">
@@ -39,8 +39,9 @@ function render() {
   app.innerHTML = header + titre + main + footer;
 }
 render();
+
 const card = document.querySelectorAll('#card');
-const res = document.querySelectorAll('#réserver');
+
 body.addEventListener('click', (e) => {
   if (e.target.matches('#nonApp')) {
     e.preventDefault();
@@ -53,17 +54,19 @@ body.addEventListener('click', (e) => {
     }
   } else if (e.target.matches('#commande')) {
     console.log('toto');
-    body.innerHTML = '<h5>"La commande a bien été enregistrée</h5>';
+    body.innerHTML = '<h5>La commande a bien été enregistrée</h5>';
   }
 });
+
+const btnRes = document.querySelectorAll('#réserver');
 const input = document.querySelectorAll('.quantité');
-const footer1 = document.querySelector('#footer');
+const footerRes = document.querySelector('#footer');
 for (let i = 0; i < vaccins.length; i++) {
-  res[i].addEventListener('click', (e) => {
+  btnRes[i].addEventListener('click', (e) => {
     e.preventDefault();
-    footer1.innerHTML += `<br/><h5>${vaccins[i].nom}<br/>${input[i].value}</h5>`;
+    footerRes.innerHTML += `<br/><h5>${vaccins[i].nom}<br/>${input[i].value}</h5>`;
     input[i].style.display = 'none';
-    res[i].disabled = true;
+    btnRes[i].disabled = true;
   });
 }
 
