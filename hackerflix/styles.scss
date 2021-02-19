@@ -1,6 +1,6 @@
 /* dependencies */
 @import "@fortawesome/fontawesome-free/css/all.css";
-// @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 
 /* local imports */
 @import "./styles/variables";
@@ -23,10 +23,11 @@ body {
     height: 200%;
     width : 100%;
 }
-h1 {
+h1, h2 {
+    margin-top: 3%;
     text-align: center;
 }
-#recent{
+#recent, #back {
     margin-bottom: 2%;
     margin-left: 20px; ;
 }
@@ -79,13 +80,8 @@ h5{
     font-size: 100%;
     border-radius: 10%;
     button{
-            background-color: rgb(5, 4, 4);
-            border-radius: 10%;
             margin: 3%;
             margin-left: 46%;
-            color: white;
-            
-            
         }
         .pop-titre, .pop-titre, .pop-year, .pop-year, .pop-year {
             color: blac;

@@ -6,8 +6,8 @@ const app = document.querySelector('#app');
 const body = document.querySelector('body');
 
 function render() {
-  const titre = '<h1>Les films</h1>';
-  const recentFilms = '<button id="recent">Recent films only</button>';
+  const titre = '<h1>Hackerflix</h1>';
+  const recentFilms = '<button id="recent" class="btn btn-primary">Recent films only</button>';
   let posters = '<div class="box-films">';
   for (let i = 0; i < movies.length; i++) {
     if (movies[i].img === true) {
@@ -46,7 +46,7 @@ function playPopup() {
   for (let i = 0; i < images.length; i++) {
     images[i].addEventListener('click', () => {
       if (pop[i].style.display === 'none') {
-        pop[i].innerHTML = '<button id="btn">close</button>';
+        pop[i].innerHTML = '<button id="btn" class="btn btn-primary">close</button>';
         pop[i].style.display = 'block';
         pop[i].innerHTML += `
           <div class="pop-titre">titre : ${movies[i].title}</div><br/>
@@ -99,7 +99,7 @@ function recentFilmsOnly() {
   </div>
 `;
         }
-        const back = '<button id="back">back</button>';
+        const back = '<button id="back" class="btn btn-primary">back</button>';
         recentFilms += '</div>';
         const titreRecentFilms = '<h2>Recent films</h2>';
         app.innerHTML = titreRecentFilms + back + recentFilms;
@@ -107,11 +107,10 @@ function recentFilmsOnly() {
 
         const backBtn = document.getElementById('back');
         backBtn.addEventListener('click', () => {
-          render();
+          document.location.reload();
         });
       }
     });
   }
 }
 recentFilmsOnly();
-// il y a un poblème, si on returne sur la page avec tous les films, le popup ne marche plus.
