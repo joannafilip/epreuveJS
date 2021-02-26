@@ -37,56 +37,56 @@ function render() {
 
   main += '</main>';
   app.innerHTML = header + titre + main + footer;
-}
-render();
 
-const btnRes = document.querySelectorAll('#réserver');
-const input = document.querySelectorAll('.quantité');
-const footerRes = document.querySelector('#footer');
-const btnCommand = document.querySelector('#commande');
+  const btnRes = document.querySelectorAll('#réserver');
+  const input = document.querySelectorAll('.quantité');
+  const footerRes = document.querySelector('#footer');
+  const btnCommand = document.querySelector('#commande');
 
-for (let i = 0; i < vaccins.length; i++) {
-  btnRes[i].addEventListener('click', (e) => {
-    e.preventDefault();
-    if (input[i].value > 0) {
-      footerRes.innerHTML += `<br/><h5>${vaccins[i].nom}<br/>${input[i].value}</h5>`;
-      input[i].style.display = 'none';
-      btnRes[i].disabled = true;
+  for (let i = 0; i < vaccins.length; i++) {
+    btnRes[i].addEventListener('click', (e) => {
+      e.preventDefault();
+      if (input[i].value > 0) {
+        footerRes.innerHTML += `<br/><h5>${vaccins[i].nom}<br/>${input[i].value}</h5>`;
+        input[i].style.display = 'none';
+        btnRes[i].disabled = true;
+        btnCommand.disabled = false;
+      } else {
+        alert('Quantité ne peut pas etre 0');
+        btnCommand.disabled = true;
+      }
+    });
+  }
+
+  const card = document.querySelectorAll('#card');
+
+  body.addEventListener('click', (e) => {
+    if (e.target.matches('#nonApp')) {
+      e.preventDefault();
+      for (let i = 0; i < vaccins.length; i++) {
+        if (vaccins[i].approuvé === false && card[i].style.display === 'none') {
+          card[i].style.display = 'block';
+        } else if (vaccins[i].approuvé === false) {
+          card[i].style.display = 'none';
+        }
+      }
+    } else if (e.target.matches('#commande')) {
       btnCommand.disabled = false;
-    } else {
-      alert('Quantité ne peut pas etre 0');
-      btnCommand.disabled = true;
+      body.innerHTML = '<h5>La commande a bien été enregistrée</h5>';
+    } else if (e.target.matches('#commandeRes')) {
+      document.location.reload();
+    }
+  });
+
+  // classer par prix
+  body.addEventListener('click', (e) => {
+    if (e.target.matches('#prix')) {
+      vaccins.sort((x, y) => {
+        const a = x.prix_unitaire;
+        const b = y.prix_unitaire;
+        return a - b;
+      }); render();
     }
   });
 }
-
-const card = document.querySelectorAll('#card');
-
-body.addEventListener('click', (e) => {
-  if (e.target.matches('#nonApp')) {
-    e.preventDefault();
-    for (let i = 0; i < vaccins.length; i++) {
-      if (vaccins[i].approuvé === false && card[i].style.display === 'none') {
-        card[i].style.display = 'block';
-      } else if (vaccins[i].approuvé === false) {
-        card[i].style.display = 'none';
-      }
-    }
-  } else if (e.target.matches('#commande')) {
-    btnCommand.disabled = false;
-    body.innerHTML = '<h5>La commande a bien été enregistrée</h5>';
-  } else if (e.target.matches('#commandeRes')) {
-    document.location.reload();
-  }
-});
-
-// classer par prix
-body.addEventListener('click', (e) => {
-  if (e.target.matches('#prix')) {
-    vaccins.sort((x, y) => {
-      const a = x.prix_unitaire;
-      const b = y.prix_unitaire;
-      return a - b;
-    }); render();
-  }
-});
+render();

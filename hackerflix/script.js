@@ -71,22 +71,31 @@ function recentFilmsOnly() {
   for (let i = 0; i < movies.length; i++) {
     body.addEventListener('click', (e) => {
       if (e.target.matches('#recent')) {
-        if (movies[i].year > 2000) {
-          if (movies[i].img === true) {
-            recentFilms += `
+        function compare(a, b) {
+          if (a.year > b.year) {
+            return -1;
+          }
+          if (a.year < b.year) {
+            return 1;
+          }
+          return 0;
+        }
+        movies.sort(compare);
+        if (movies[i].img === true) {
+          recentFilms += `
             <div class="films">
               <img src="posters/${movies[i].imdb}.jpg" class="img"/>
               <h5>${movies[i].title}</h5>
             </div>`;
-          } else {
-            recentFilms += `
+        } else {
+          recentFilms += `
               <div class="films">
                 <div class="posters">
                 <h5>${movies[i].title}</h5>
                 </div>
             </div>`;
-          }
-          recentFilms += `
+        }
+        recentFilms += `
         <div class="card-body">
           <div class="popup">
             <div class="cont-pop"></div>
@@ -98,7 +107,7 @@ function recentFilmsOnly() {
       </div>
   </div>
 `;
-        }
+
         const back = '<button id="back" class="btn btn-primary">back</button>';
         recentFilms += '</div>';
         const titreRecentFilms = '<h2>Recent films</h2>';
